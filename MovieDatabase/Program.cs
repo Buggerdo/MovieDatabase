@@ -1,4 +1,4 @@
-﻿
+﻿using static MovieDatabase.ListOfMovies;
 
 namespace MovieDatabase
 {
@@ -6,7 +6,15 @@ namespace MovieDatabase
     {
         static void Main()
         {
-            ListOfMovies.MakeListOfMovies();
+
+            PrintMovieList();
+            Console.WriteLine();
+            PrintMovieCategory("Action");
+            Console.WriteLine();
+            PrintMovieCategory("Comedy");
+            //movieList.Where(s => s.GetCategory == "Action")
+            //    .ToList()
+            //    .ForEach(w => Console.WriteLine(w.GetTitle));
         }
     }
 }
