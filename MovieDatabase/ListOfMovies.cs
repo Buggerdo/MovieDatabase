@@ -4,7 +4,8 @@ namespace MovieDatabase
 {
     internal class ListOfMovies
     {
-        public static List<string> categories = new() { "Action", "Comedy", "Drama", "Horror" };
+        public static List<string> categories = new() { "Action", "Comedy", "Drama", "Horror", "Animated", "scifi" };
+        
 
         public static List<Movie> movieList = new()
             {
@@ -29,18 +30,23 @@ namespace MovieDatabase
                 new Movie("Incantation", "Horror"),
             };
 
-        public static void PrintMovieList()
-        {
-            int movieNumber = 1;
-            Console.WriteLine("List of all movies.\n");
-            movieList.OrderBy(x => x.GetCategory)
-                .ThenBy(x => x.GetTitle)
-                .ToList()
-                .ForEach(i => WriteLine($"{movieNumber++,-2}: {i.GetTitle,-30} {i.GetCategory}"));
-        }
+        //public static void PrintMovieList()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("List of all movies.\n");
+        //    movieList.OrderBy(x => x.GetCategory)
+        //        .ThenBy(x => x.GetTitle)
+        //        .ToList()
+        //        .ForEach(i => WriteLine($"{i.GetTitle,-30} {i.GetCategory}"));
+        //}
 
+        /// <summary>
+        /// prints a list of movies in a category
+        /// </summary>
+        /// <param name="cat"></param>
         public static void PrintMovieCategory(string cat)
         {
+            Console.Clear();
             Console.WriteLine($"List of {cat} movies.\n");
             movieList.OrderBy(x => x.GetTitle)
                 .Where(s => s.GetCategory == cat)
@@ -48,12 +54,17 @@ namespace MovieDatabase
                 .ForEach(i => Console.WriteLine(i.GetTitle));
         }
 
+        /// <summary>
+        /// prints a list of movie categories
+        /// </summary>
         public static void PrintCategories()
         {
-            Console.WriteLine("List of movie categories.\n");
-            categories.OrderBy(x => x)
-                .ToList()
-                .ForEach(i => Console.WriteLine(i));
+            Console.Clear();
+            int categorieNumber = 1;
+            Console.WriteLine("List of available movie categories.");
+            Console.WriteLine("You can also select by index numbers.\n");
+            categories.ToList()
+                .ForEach(i => Console.WriteLine($"{categorieNumber++}: {i}"));
         }
     }
 }

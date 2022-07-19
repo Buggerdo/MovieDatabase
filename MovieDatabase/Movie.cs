@@ -3,8 +3,8 @@ namespace MovieDatabase
 {
     internal class Movie
     {     
-        private string title;
-        private string category;
+        private readonly string title;
+        private readonly string category;
 
         public Movie( string title, string category)
         {         
