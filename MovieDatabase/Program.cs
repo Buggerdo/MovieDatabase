@@ -7,7 +7,6 @@ namespace MovieDatabase
         static void Main()
         {
             bool more = true;
-            string[] no = { "no", "exit", "quit" };
             categories.Sort();
 
             Console.WriteLine("Welcome to the Movie List Application!");
@@ -47,6 +46,7 @@ namespace MovieDatabase
 
                 Console.Write("\nPress any key to continue or exit to quit: ");
                 string contiue = Console.ReadLine().ToLower().Trim();
+                string[] no = { "no", "exit", "quit" };
                 if(no.Where(n => n.StartsWith(contiue)).Any() && contiue != "")
                 {
                     more = false;
