@@ -30,15 +30,6 @@ namespace MovieDatabase
                 new Movie("Incantation", "Horror"),
             };
 
-        //public static void PrintMovieList()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("List of all movies.\n");
-        //    movieList.OrderBy(x => x.GetCategory)
-        //        .ThenBy(x => x.GetTitle)
-        //        .ToList()
-        //        .ForEach(i => WriteLine($"{i.GetTitle,-30} {i.GetCategory}"));
-        //}
 
         /// <summary>
         /// prints a list of movies in a category
