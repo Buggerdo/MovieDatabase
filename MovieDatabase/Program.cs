@@ -47,7 +47,7 @@ namespace MovieDatabase
 
                 Console.Write("\nPress any key to continue or exit to quit: ");
                 string contiue = Console.ReadLine().ToLower().Trim();
-                if(no.Where(key => key.ToLower().StartsWith(contiue)).Any() && contiue != "")
+                if(no.Where(n => n.StartsWith(contiue)).Any() && contiue != "")
                 {
                     more = false;
                 }
