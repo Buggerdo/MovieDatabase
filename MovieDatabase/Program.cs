@@ -1,4 +1,5 @@
 ﻿using static MovieDatabase.ListOfMovies;
+using static MovieDatabase.MainMenu;
 
 namespace MovieDatabase
 {
@@ -13,35 +14,12 @@ namespace MovieDatabase
 
             do
             {
-                Console.WriteLine("\nEnter a movie category to see a list of movies or \"List\" to see a list of movie categories.");
-                Console.WriteLine($"There are {movieList.Count} movies in this list.");
-                string input = Console.ReadLine().ToLower();
-                if("list".StartsWith(input) && input != "")
+                if(StartMainMenu()) 
                 {
-                    PrintCategories();
-                    continue;
-                }
-                else if(categories.Where(c => c.ToLower().StartsWith(input)).Any() && input != "")
-                {
-                    string[] choice = categories.Where(c => c.ToLower().StartsWith(input)).ToArray();
-                    if(choice.Length == 1)
-                    {
-                        foreach(var cat in categories)
-                        {
-                            if(choice[0] == cat)
-                            {
-                                PrintMovieCategory(cat);
-                            }
-                        }
-                    }
-                }
-                else if(int.TryParse(input, out int index) && --index < categories.Count)
-                {
-                    PrintMovieCategory(categories.ElementAt(index));
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input.");
+                    Console.Write("Press any key to continue");
+                    Console.ReadKey();
+                    Console.Clear();
+                    continue; 
                 }
 
                 Console.Write("\nPress any key to continue or exit to quit: ");
