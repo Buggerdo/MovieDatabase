@@ -15,7 +15,7 @@ namespace MovieDatabase
             {
                 Console.WriteLine("\nEnter a movie category to see a list of movies or \"List\" to see a list of movie categories.");
                 Console.WriteLine($"There are {movieList.Count} movies in this list.");
-                string input = Console.ReadLine();
+                string input = Console.ReadLine().ToLower();
                 if("list".StartsWith(input) && input != "")
                 {
                     PrintCategories();
