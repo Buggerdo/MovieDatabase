@@ -4,30 +4,11 @@ namespace MovieDatabase
 {
     internal class ListOfMovies
     {
+        private static string lineBreak = "====================";
+
         public static List<string> categories = new();
 
-        public static List<Movie> movieList = new()
-            {
-                new Movie("10,000 BC", "Action"),
-                new Movie("Apollo 13", "Drama"),
-                new Movie("Catch Me If You Can", "Drama"),
-                new Movie("Mrs. Doubtfire", "Comedy"),
-                new Movie("The Talented Mr. Ripley", "Drama"),
-                new Movie("Groundhog Day", "Comedy"),
-                new Movie("Paycheck", "Action"),
-                new Movie("Cellular", "Action"),
-                new Movie("Speed", "Action"),
-                new Movie("Die Hard", "Action"),
-                new Movie("Paranormal Activity", "Horror"),
-                new Movie("The Exorcist", "Horror"),
-                new Movie("Anchorman", "Comedy"),
-                new Movie("Office Space", "Comedy"),
-                new Movie("An American Girl Holiday", "Drama"),
-                new Movie("Titanic", "Drama"),
-                new Movie("Edward Scissorhands", "Drama"),
-                new Movie("The Black Phone", "Horror"),
-                new Movie("Incantation", "Horror"),
-            };
+        public static List<Movie> movieList = new();
 
 
 
@@ -39,10 +20,23 @@ namespace MovieDatabase
         {
             Console.Clear();
             Console.WriteLine($"List of {cat} movies.\n");
+            Console.WriteLine(lineBreak);
             movieList.OrderBy(x => x.GetTitle)
                 .Where(s => s.GetCategory == cat)
                 .ToList()
                 .ForEach(i => Console.WriteLine(i.GetTitle));
+            Console.WriteLine(lineBreak);
+        }
+
+
+        /// <summary>
+        /// compiles a list of categorys from the list of movies
+        /// </summary>
+        public static void GetCategories()
+        {
+            movieList.Select(x => x.GetCategory).Distinct()
+               .ToList().ForEach(y => categories.Add(y));
+            categories.Sort();
         }
 
         /// <summary>
@@ -52,21 +46,31 @@ namespace MovieDatabase
         {
             Console.Clear();
             int categoryNumber = 1;
-            Console.WriteLine("List of available movie categories.");
-            Console.WriteLine("Enter the category you would like to see.");
-            Console.WriteLine("Or you can select a category by index numbers.\n");
+
+            Console.WriteLine($"List of movie categories");
+            Console.WriteLine();
+            Console.WriteLine(lineBreak);
             categories.ToList()
                 .ForEach(i => Console.WriteLine($"{categoryNumber++}: {i}"));
+            Console.WriteLine(lineBreak);
         }
 
-
-        /// <summary>
-        /// compiles a list of categorys from the list of movies
-        /// </summary>
-        public static void GetCategories()
+        public static void MakeMovieList()
         {
-             movieList.Select(x => x.GetCategory).Distinct()
-                .ToList().ForEach(y => categories.Add(y));
+            var path = @"..\..\..\MovieList.txt";
+
+            List<string> lines = File.ReadAllLines(path).ToList();
+
+            foreach(var line in lines)
+            {
+                string[] entries = line.Split(',');
+                Console.WriteLine(entries[0]);
+                Movie _ = new(entries[0], entries[1]);
+                movieList.Add(_);
+            }
         }
+
+
+
     }
 }
