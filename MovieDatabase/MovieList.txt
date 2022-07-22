@@ -1,0 +1,20 @@
+﻿10000 BC,Action
+Apollo 13,Drama
+Catch Me If You Can,Drama
+Mrs. Doubtfire,Comedy
+The Talented Mr. Ripley,Drama
+Groundhog Day,Comedy
+Paycheck,Action
+Cellular,Action
+Speed,Action
+Die Hard,Action
+Paranormal Activity,Horror
+The Exorcist,Horror
+Anchorman,Comedy
+Office Space,Comedy
+An American Girl Holiday,Drama
+Titanic,Drama
+Edward Scissorhands,Drama
+The Black Phone,Horror
+Incantation,Horror
+test,test
