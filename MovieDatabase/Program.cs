@@ -7,29 +7,34 @@ namespace MovieDatabase
     {
         static void Main()
         {
-            bool more = true;
-
             MakeMovieList();
-            GetCategories();
-
-
-            Console.WriteLine("Welcome to the Movie List Application!");
+            MakeCategories();
 
             do
             {
                 StartMainMenu();
+            } while(Exit());
+        }
 
-                Console.WriteLine();
-                Console.Write("Press any key to continue or exit to quit: ");
-                string contiue = Console.ReadLine().ToLower().Trim();
-                string[] no = { "no", "exit", "quit" };
-                if(contiue != String.Empty && no.Where(n => n.StartsWith(contiue)).Any())
-                {
-                    more = false;
-                }
+
+        /// <summary>
+        /// Checks to see if user wants to continue
+        /// </summary>
+        /// <returns>returns true if user wants to continue</returns>
+        private static bool Exit()
+        {
+            string[] no = { "no", "exit", "quit" };
+
+            Console.WriteLine();
+            Console.Write("Press any key to continue or exit to quit: ");
+            string contiue = Console.ReadLine().ToLower().Trim();
+            if(contiue != String.Empty && no.Where(n => n.StartsWith(contiue)).Any())
+            {
                 Console.Clear();
-
-            } while(more);
+                return false;
+            }
+            Console.Clear();
+            return true;
         }
     }
 }
