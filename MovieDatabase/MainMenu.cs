@@ -4,44 +4,40 @@ namespace MovieDatabase
 {
     internal class MainMenu
     {
-        public static bool StartMainMenu()
+        public static void StartMainMenu()
         {
-            do
+            PrintCategories();
+
+            Console.WriteLine();
+            Console.WriteLine("Enter a movie category you would like to see.");
+            Console.WriteLine("Or you can select a category by index numbers.");
+            Console.WriteLine($"There are {movieList.Count} movies in this list.");
+            Console.WriteLine();
+            string input = Console.ReadLine().ToLower().Trim();
+            if(input != string.Empty && categories.Where(c => c.ToLower().Trim().StartsWith(input)).Any())
             {
-                Console.WriteLine("\nEnter a movie category to see a list of movies or \"List\" to see a list of movie categories.");
-                Console.WriteLine($"There are {movieList.Count} movies in this list.");
-                string input = Console.ReadLine().ToLower().Trim();
-                if(input != string.Empty && "list".StartsWith(input))
+                string[] choice = categories.Where(c => c.ToLower().Trim().StartsWith(input)).ToArray();
+                if(choice.Length == 1)
                 {
-                    PrintCategories();
-                    continue;
-                }
-                if(input != String.Empty && categories.Where(c => c.ToLower().StartsWith(input)).Any())
-                {
-                    string[] choice = categories.Where(c => c.ToLower().StartsWith(input)).ToArray();
-                    if(choice.Length == 1)
+                    foreach(var cat in categories)
                     {
-                        foreach(var cat in categories)
+                        if(choice[0] == cat)
                         {
-                            if(choice[0] == cat)
-                            {
-                                PrintMovieCategory(cat);
-                            }
+                            PrintMovieCategory(cat);
+                            //break;
                         }
                     }
                 }
-                else if(int.TryParse(input, out int index) && --index < categories.Count)
-                {
-                    PrintMovieCategory(categories.ElementAt(index));
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input.");
-                    return true;
-                }
-
-                return false; 
-            } while(true);
+            }
+            else if(int.TryParse(input, out int index) && --index < categories.Count)
+            {
+                PrintMovieCategory(categories.ElementAt(index));
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid input.");
+            }
         }
     }
 }
