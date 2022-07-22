@@ -37,7 +37,6 @@ namespace MovieDatabase
         /// <param name="cat"></param>
         public static void PrintMovieCategory(string cat)
         {
-            GetCategories();
             Console.Clear();
             Console.WriteLine($"List of {cat} movies.\n");
             movieList.OrderBy(x => x.GetTitle)
@@ -64,14 +63,10 @@ namespace MovieDatabase
         /// <summary>
         /// compiles a list of categorys from the list of movies
         /// </summary>
-        private static void GetCategories()
+        public static void GetCategories()
         {
-            var list = movieList.Select(x => x.GetCategory).Distinct();
-            foreach(var item in list)
-            {
-                categories.Add(item);
-            }
-            categories.Sort();
+             movieList.Select(x => x.GetCategory).Distinct()
+                .ToList().ForEach(y => categories.Add(y));
         }
     }
 }
