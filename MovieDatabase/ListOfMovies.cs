@@ -4,8 +4,7 @@ namespace MovieDatabase
 {
     internal class ListOfMovies
     {
-        public static List<string> categories = new() { "Action", "Comedy", "Drama", "Horror", "Animated", "scifi" };
-        
+        public static List<string> categories = new();
 
         public static List<Movie> movieList = new()
             {
@@ -31,12 +30,14 @@ namespace MovieDatabase
             };
 
 
+
         /// <summary>
         /// prints a list of movies in a category
         /// </summary>
         /// <param name="cat"></param>
         public static void PrintMovieCategory(string cat)
         {
+            GetCategories();
             Console.Clear();
             Console.WriteLine($"List of {cat} movies.\n");
             movieList.OrderBy(x => x.GetTitle)
@@ -51,11 +52,26 @@ namespace MovieDatabase
         public static void PrintCategories()
         {
             Console.Clear();
-            int categorieNumber = 1;
+            int categoryNumber = 1;
             Console.WriteLine("List of available movie categories.");
-            Console.WriteLine("You can also select by index numbers.\n");
+            Console.WriteLine("Enter the category you would like to see.");
+            Console.WriteLine("Or you can select a category by index numbers.\n");
             categories.ToList()
-                .ForEach(i => Console.WriteLine($"{categorieNumber++}: {i}"));
+                .ForEach(i => Console.WriteLine($"{categoryNumber++}: {i}"));
+        }
+
+
+        /// <summary>
+        /// compiles a list of categorys from the list of movies
+        /// </summary>
+        private static void GetCategories()
+        {
+            var list = movieList.Select(x => x.GetCategory).Distinct();
+            foreach(var item in list)
+            {
+                categories.Add(item);
+            }
+            categories.Sort();
         }
     }
 }
