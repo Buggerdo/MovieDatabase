@@ -4,7 +4,7 @@ namespace MovieDatabase
 {
     internal class ListOfMovies
     {
-        private static string lineBreak = "====================";
+        private static readonly string lineBreak = "====================";
 
         public static List<string> categories = new();
 
@@ -32,7 +32,7 @@ namespace MovieDatabase
         /// <summary>
         /// compiles a list of categorys from the list of movies
         /// </summary>
-        public static void GetCategories()
+        public static void MakeCategories()
         {
             movieList.Select(x => x.GetCategory).Distinct()
                .ToList().ForEach(y => categories.Add(y));
@@ -44,7 +44,6 @@ namespace MovieDatabase
         /// </summary>
         public static void PrintCategories()
         {
-            Console.Clear();
             int categoryNumber = 1;
 
             Console.WriteLine($"List of movie categories");
@@ -55,18 +54,20 @@ namespace MovieDatabase
             Console.WriteLine(lineBreak);
         }
 
+
+        /// <summary>
+        /// Compiles a list of movies from text file
+        /// </summary>
         public static void MakeMovieList()
         {
             var path = @"..\..\..\MovieList.txt";
-
             List<string> lines = File.ReadAllLines(path).ToList();
 
             foreach(var line in lines)
             {
                 string[] entries = line.Split(',');
-                Console.WriteLine(entries[0]);
-                Movie _ = new(entries[0], entries[1]);
-                movieList.Add(_);
+                Movie newMovie = new(entries[0], entries[1]);
+                movieList.Add(newMovie);
             }
         }
 
