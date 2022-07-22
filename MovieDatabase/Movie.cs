@@ -1,19 +1,18 @@
-﻿
-namespace MovieDatabase
+﻿namespace MovieDatabase
 {
     internal class Movie
     {     
-        private readonly string title;
-        private readonly string category;
+        private readonly string Title;
+        private readonly string Category;
 
         public Movie( string title, string category)
         {         
-            this.title = title;
-            this.category = category;
+            Title = title;
+            Category = category;
         }
 
-        public string GetTitle { get { return title; } }
+        public string GetTitle { get { return Title; } }
 
-        public string GetCategory { get { return category; } }
+        public string GetCategory { get { return Category; } }
     }
 }

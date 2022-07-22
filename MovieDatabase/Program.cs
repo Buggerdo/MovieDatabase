@@ -1,21 +1,17 @@
-﻿using static MovieDatabase.ListOfMovies;
-using static MovieDatabase.MainMenu;
-
-namespace MovieDatabase
+﻿namespace MovieDatabase
 {
     internal class Program
     {
         static void Main()
         {
-            MakeMovieList();
-            MakeCategories();
+            ListOfMovies.MakeMovieList();
+            ListOfMovies.MakeCategories();
 
             do
             {
-                StartMainMenu();
+                MainMenu.StartMainMenu();
             } while(Exit());
         }
-
 
         /// <summary>
         /// Checks to see if user wants to continue
