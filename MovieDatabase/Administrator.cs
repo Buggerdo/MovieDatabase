@@ -10,12 +10,22 @@ namespace MovieDatabase
     {
         public static void AdministratorAccess()
         {
-            Console.Clear();
-            foreach(var movie in ListOfMovies.movieList)
+            do
             {
-                Console.WriteLine($"{movie.Title} {movie.Category}");
-            }
-            Console.WriteLine("Hey");
+                ListOfMovies.PrintFullMovieList();
+                Console.WriteLine();
+                Console.WriteLine("Would you like to ADD or REMOVE a movie?");
+                Console.WriteLine("Press enter to skip.");
+                string userInput = Console.ReadLine().ToLower().Trim();
+                if(userInput != String.Empty && "add".StartsWith(userInput))
+                {
+                    ListOfMovies.AddMovie();
+                }
+                else if(userInput != String.Empty && "remove".StartsWith(userInput))
+                {
+                    ListOfMovies.RemoveMovie();
+                }
+            } while(Program.Exit());
         }
     }
 }
