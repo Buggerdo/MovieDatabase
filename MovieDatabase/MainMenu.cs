@@ -18,6 +18,7 @@
             if(input == "password")
             {
                 Administrator.AdministratorAccess();
+                StartMainMenu();
             }
             else if(input != string.Empty && ListOfMovies.categories.Where(c => c.ToLower().Trim().StartsWith(input)).Any())
             {
