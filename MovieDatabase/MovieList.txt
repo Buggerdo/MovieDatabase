@@ -3,6 +3,8 @@ Cellular,Action
 Die Hard,Action
 Paycheck,Action
 Speed,Action
+Encanto,Animation
+Ron's gone wrong,Animation
 Anchorman,Comedy
 Groundhog Day,Comedy
 Mrs. Doubtfire,Comedy
