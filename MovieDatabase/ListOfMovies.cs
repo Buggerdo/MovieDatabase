@@ -53,15 +53,17 @@
         /// </summary>
         public static void MakeMovieList()
         {
-            var path = @"..\..\..\MovieList.txt";
+            string path = @"..\..\..\MovieList.txt";
             string[] lines = File.ReadAllLines(path);
 
-            foreach(var line in lines)
+            foreach(string line in lines)
             {
                 string[] entries = line.Split(',');
                 Movie newMovie = new(entries[0], entries[1]);
                 movieList.Add(newMovie);
             }
+            movieList = movieList.OrderBy(x => x.GetCategory).ThenBy(x => x.GetTitle).ToList();
+            
         }
     }
 }
