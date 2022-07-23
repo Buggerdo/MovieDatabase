@@ -17,10 +17,10 @@
             Console.Clear();
             Console.WriteLine($"List of {cat} movies.\n");
             Console.WriteLine(lineBreak);
-            movieList.OrderBy(x => x.GetTitle)
-                .Where(s => s.GetCategory == cat)
+            movieList.OrderBy(x => x.Title)
+                .Where(s => s.Category == cat)
                 .ToList()
-                .ForEach(i => Console.WriteLine(i.GetTitle));
+                .ForEach(i => Console.WriteLine(i.Title));
             Console.WriteLine(lineBreak);
         }
 
@@ -29,7 +29,7 @@
         /// </summary>
         public static void MakeCategories()
         {
-            movieList.Select(x => x.GetCategory).Distinct()
+            movieList.Select(x => x.Category).Distinct()
                .ToList().ForEach(y => categories.Add(y));
             categories.Sort();
         }
@@ -62,7 +62,7 @@
                 Movie newMovie = new(entries[0], entries[1]);
                 movieList.Add(newMovie);
             }
-            movieList = movieList.OrderBy(x => x.GetCategory).ThenBy(x => x.GetTitle).ToList();
+            movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
             SaveMovieList();
         }
 
@@ -75,7 +75,7 @@
 
             foreach(var movie in movieList)
             {
-                output.Add($"{movie.GetTitle},{movie.GetCategory}");
+                output.Add($"{movie.Title},{movie.Category}");
             }
             File.WriteAllLines(path, output);
         }
