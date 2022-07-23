@@ -48,12 +48,12 @@
             Console.WriteLine(lineBreak);
         }
 
+        private static string path = @"..\..\..\MovieList.txt";
         /// <summary>
         /// Compiles a list of movies from text file
         /// </summary>
         public static void MakeMovieList()
         {
-            string path = @"..\..\..\MovieList.txt";
             string[] lines = File.ReadAllLines(path);
 
             foreach(string line in lines)
@@ -63,7 +63,21 @@
                 movieList.Add(newMovie);
             }
             movieList = movieList.OrderBy(x => x.GetCategory).ThenBy(x => x.GetTitle).ToList();
-            
+            SaveMovieList();
+        }
+
+        /// <summary>
+        /// Saves the movie list back to file
+        /// </summary>
+        public static void SaveMovieList()
+        {
+            List<string> output = new();
+
+            foreach(var movie in movieList)
+            {
+                output.Add($"{movie.GetTitle},{movie.GetCategory}");
+            }
+            File.WriteAllLines(path, output);
         }
     }
 }
