@@ -29,6 +29,7 @@
         /// </summary>
         public static void MakeCategories()
         {
+            categories.Clear();
             movieList.Select(x => x.Category).Distinct()
                .ToList().ForEach(y => categories.Add(y));
             categories.Sort();
@@ -152,7 +153,26 @@
 
         public static void RemoveMovie()
         {
+            bool isMoveRemoved = false;
+            string userInput;
 
+            Console.Clear();
+            PrintFullMovieList();
+            Console.Write("Please enter the index of the movie you want to remove: ");
+            userInput = Console.ReadLine().Trim();
+            if(int.TryParse(userInput, out int index) && --index < movieList.Count)
+            {
+                Console.Write($"Are you sure you would like to remove to movie {movieList.ElementAt(index).Title} Y/N? ");
+                string confirmation = Console.ReadLine().ToLower().Trim();
+                if(confirmation != string.Empty && "yes".StartsWith(confirmation))
+                {
+                    Console.Clear();
+                    movieList.RemoveAt(index);
+                    SaveMovieList();
+                    MakeCategories();
+                    PrintFullMovieList();
+                }
+            }
         }
     }
 }
