@@ -9,7 +9,7 @@
         public static List<Movie> movieList = new();
 
         /// <summary>
-        /// prints a list of movies in a Category
+        /// prints a list of movies in a category
         /// </summary>
         /// <param name="cat">Takes in a movie category and prints all the movies int that category</param>
         public static void PrintMovieCategory(string cat)
@@ -48,7 +48,7 @@
             Console.WriteLine(lineBreak);
         }
 
-        private static string path = @"..\..\..\MovieList.txt";
+        private static readonly string path = @"..\..\..\MovieList.txt";
         /// <summary>
         /// Compiles a list of movies from text file
         /// </summary>
@@ -78,6 +78,81 @@
                 output.Add($"{movie.Title},{movie.Category}");
             }
             File.WriteAllLines(path, output);
+        }
+
+        /// <summary>
+        /// Prints the full movie list
+        /// </summary>
+        public static void PrintFullMovieList()
+        {
+            Console.Clear();
+            int index = 1;
+            foreach(var movie in movieList)
+            {
+                Console.WriteLine($"{index++}: {movie.Title} {movie.Category}");
+            }
+        }
+
+        public static void AddMovie()
+        {
+            string title;
+            string category;
+            bool isGoodTitle = false;
+            do
+            {
+                Console.Clear();
+                Console.Write("Please enter the movie title: ");
+                title = Console.ReadLine().Trim();
+                if(title.Length == 0 || title.Contains(','))
+                {
+                    Console.WriteLine("Empty String or invalid input");
+                    Console.ReadKey();
+                }
+                else if(title.Length == 1)
+                {
+                    title = char.ToUpper(title[0]).ToString();
+                    isGoodTitle = true;
+                }
+                else
+                {
+                    title = char.ToUpper(title[0]) + title[1..];
+                    isGoodTitle = true;
+                }
+            } while(!isGoodTitle);
+
+            bool isGoodCategory = false;
+            do
+            {
+                Console.Clear();
+                Console.Write("Please enter the movie category: ");
+                category = Console.ReadLine().Trim();
+                if(category.Length == 0 || category.Contains(','))
+                {
+                    Console.WriteLine("Empty String or invalid input");
+                    Console.ReadKey();
+                }
+                else if(category.Length == 1)
+                {
+                    category = char.ToUpper(category[0]).ToString();
+                    isGoodCategory = true;
+                }
+                else
+                {
+                    category = char.ToUpper(category[0]) + category[1..];
+                    isGoodCategory = true;
+                }
+            } while(!isGoodCategory);
+
+            Movie newMovie = new(title, category);
+            movieList.Add(newMovie);
+            movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
+            SaveMovieList();
+            MakeCategories();
+        }
+
+        public static void RemoveMovie()
+        {
+
         }
     }
 }
