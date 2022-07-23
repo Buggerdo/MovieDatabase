@@ -17,7 +17,7 @@
         /// Checks to see if user wants to continue
         /// </summary>
         /// <returns>returns true if user wants to continue</returns>
-        private static bool Exit()
+        public static bool Exit()
         {
             string[] no = { "no", "exit", "quit" };
 
