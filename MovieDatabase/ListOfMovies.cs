@@ -90,7 +90,7 @@
             int index = 1;
             foreach(var movie in movieList)
             {
-                Console.WriteLine($"{index++}: {movie.Title} {movie.Category}");
+                Console.WriteLine($"{index++, -3}: {movie.Title, -30} {movie.Category}");
             }
         }
 
@@ -108,7 +108,7 @@
                 Console.Clear();
                 Console.Write("Please enter the movie title: ");
                 title = Console.ReadLine().Trim();
-                if(title.Length == 0 || title.Contains(','))
+                if(title == string.Empty || title.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input");
                     Console.ReadKey();
@@ -133,7 +133,7 @@
                 Console.Clear();
                 Console.Write("Please enter the movie category: ");
                 category = Console.ReadLine().Trim();
-                if(category.Length == 0 || category.Contains(','))
+                if(category == string.Empty || category.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");
                     Console.ReadKey();
