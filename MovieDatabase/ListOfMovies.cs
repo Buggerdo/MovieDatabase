@@ -60,7 +60,6 @@
             foreach(string line in lines)
             {
                 string[] entries = line.Split(',');
-                entries[0] = entries[0].ToUpper();
                 Movie newMovie = new(entries[0], entries[1]);
                 movieList.Add(newMovie);
             }
@@ -108,7 +107,7 @@
             {
                 Console.Clear();
                 Console.Write("Please enter the movie title: ");
-                title = Console.ReadLine().Trim();
+                title = Console.ReadLine().Trim().ToUpper();
                 if(title == string.Empty || title.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");
