@@ -93,10 +93,8 @@
         {
             Console.Clear();
             int index = 1;
-            foreach(var movie in movieList)
-            {
-                Console.WriteLine($"{index++,-3}: {movie.Title,-30} {movie.Category}");
-            }
+
+            movieList.ForEach(m => Console.WriteLine($"{index++,-3}: {m.Title,-30} {m.Category}"));
         }
 
         /// <summary>
