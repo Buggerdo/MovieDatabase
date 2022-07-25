@@ -60,6 +60,7 @@
             foreach(string line in lines)
             {
                 string[] entries = line.Split(',');
+                entries[0] = entries[0].ToUpper();
                 Movie newMovie = new(entries[0], entries[1]);
                 movieList.Add(newMovie);
             }
@@ -110,17 +111,12 @@
                 title = Console.ReadLine().Trim();
                 if(title == string.Empty || title.Contains(','))
                 {
-                    Console.WriteLine("Empty String or invalid input");
+                    Console.WriteLine("Empty String or invalid input.");
+                    Console.WriteLine("Press any key to continue.");
                     Console.ReadKey();
-                }
-                else if(title.Length == 1)
-                {
-                    title = char.ToUpper(title[0]).ToString();
-                    isGoodTitle = true;
                 }
                 else
                 {
-                    title = char.ToUpper(title[0]) + title[1..];
                     isGoodTitle = true;
                 }
             } while(!isGoodTitle);
@@ -136,6 +132,7 @@
                 if(category == string.Empty || category.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");
+                    Console.WriteLine("Press any key to continue.");
                     Console.ReadKey();
                 }
                 else

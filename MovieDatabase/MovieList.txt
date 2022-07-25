@@ -1,29 +1,29 @@
 10000 BC,Action
-Cellular,Action
-Die Hard,Action
-Paycheck,Action
-Speed,Action
+CELLULAR,Action
+DIE HARD,Action
+PAYCHECK,Action
+SPEED,Action
 9,Animation
-Encanto,Animation
-Extinct,Animation
-Lego movie,Animation
-Megamind,Animation
-Ron's gone wrong,Animation
-Toy Story,Animation
-Anchorman,Comedy
-Groundhog Day,Comedy
-Mrs. Doubtfire,Comedy
-Office Space,Comedy
-An American Girl Holiday,Drama
-Apollo 13,Drama
-Catch Me If You Can,Drama
-Edward Scissorhands,Drama
-The Talented Mr. Ripley,Drama
-Titanic,Drama
-Incantation,Horror
-Paranormal Activity,Horror
-The Black Phone,Horror
-The Exorcist,Horror
-Cry Macho,Western
-No man's land,Western
-Old Henry,Western
+ENCANTO,Animation
+EXTINCT,Animation
+LEGO MOVIE,Animation
+MEGAMIND,Animation
+RON'S GONE WRONG,Animation
+TOY STORY,Animation
+ANCHORMAN,Comedy
+GROUNDHOG DAY,Comedy
+MRS. DOUBTFIRE,Comedy
+OFFICE SPACE,Comedy
+AN AMERICAN GIRL HOLIDAY,Drama
+APOLLO 13,Drama
+CATCH ME IF YOU CAN,Drama
+EDWARD SCISSORHANDS,Drama
+THE TALENTED MR. RIPLEY,Drama
+TITANIC,Drama
+INCANTATION,Horror
+PARANORMAL ACTIVITY,Horror
+THE BLACK PHONE,Horror
+THE EXORCIST,Horror
+CRY MACHO,Western
+NO MAN'S LAND,Western
+OLD HENRY,Western
