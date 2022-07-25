@@ -77,11 +77,7 @@
         public static void SaveMovieList()
         {
             List<string> output = new();
-
-            foreach(var movie in movieList)
-            {
-                output.Add($"{movie.Title},{movie.Category}");
-            }
+            movieList.ForEach(m => output.Add($"{m.Title},{m.Category}"));
             File.WriteAllLines(path, output);
         }
 
@@ -92,7 +88,6 @@
         {
             Console.Clear();
             int index = 1;
-
             movieList.ForEach(m => Console.WriteLine($"{index++,-3}: {m.Title,-30} {m.Category}"));
         }
 
