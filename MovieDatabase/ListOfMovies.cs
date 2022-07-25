@@ -15,7 +15,10 @@
         public static void PrintMovieCategory(string cat)
         {
             Console.Clear();
-            Console.WriteLine($"List of {cat} movies.\n");
+            Console.WriteLine(lineBreak);
+            Console.WriteLine();
+            Console.WriteLine($"List of {cat} movies.");
+            Console.WriteLine();
             Console.WriteLine(lineBreak);
             movieList.OrderBy(x => x.Title)
                 .Where(s => s.Category == cat)
@@ -42,6 +45,8 @@
         {
             int categoryNumber = 1;
 
+            Console.WriteLine(lineBreak);
+            Console.WriteLine();
             Console.WriteLine($"List of movie categories");
             Console.WriteLine();
             Console.WriteLine(lineBreak);
@@ -131,7 +136,7 @@
                 if(category == string.Empty || category.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");
-                    Console.WriteLine("Press any key to continue.");
+                    Console.Write("Press any key to continue.");
                     Console.ReadKey();
                 }
                 else
