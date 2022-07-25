@@ -95,7 +95,7 @@
             int index = 1;
             foreach(var movie in movieList)
             {
-                Console.WriteLine($"{index++, -3}: {movie.Title, -30} {movie.Category}");
+                Console.WriteLine($"{index++,-3}: {movie.Title,-30} {movie.Category}");
             }
         }
 
@@ -107,7 +107,7 @@
 
             string title;
             string category;
-            bool isGoodTitle = false;
+            bool isGoodTitle = true;
             do
             {
                 Console.Clear();
@@ -118,6 +118,7 @@
                     Console.WriteLine("Empty String or invalid input.");
                     Console.WriteLine("Press any key to continue.");
                     Console.ReadKey();
+                    isGoodTitle = false;
                 }
                 else
                 {
@@ -126,7 +127,7 @@
             } while(!isGoodTitle);
 
             bool isGoodCategory = false;
-            string[] genres = { "Action", "Horror" ,"Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
+            string[] genres = { "Action", "Horror", "Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
 
             do
             {
@@ -182,11 +183,9 @@
         /// </summary>
         public static void RemoveMovie()
         {
-            bool isMoveRemoved = false;
             string userInput;
             do
             {
-
                 Console.Clear();
                 PrintFullMovieList();
                 Console.WriteLine();
@@ -204,14 +203,13 @@
                         SaveMovieList();
                         MakeCategories();
                         PrintFullMovieList();
-                        isMoveRemoved = true;
+                        return;
                     }
                 }
-                else
-                {
-                    Console.WriteLine($"Sorry {userInput} is not a valid input");
-                }
-            } while(!isMoveRemoved);
+                Console.WriteLine($"Sorry {userInput} is not a valid input");
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+            } while(true);
         }
     }
 }
