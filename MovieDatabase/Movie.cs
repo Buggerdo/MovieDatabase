@@ -11,7 +11,5 @@
             Title = title;
             Category = category;
         }
-
- 
     }
 }
