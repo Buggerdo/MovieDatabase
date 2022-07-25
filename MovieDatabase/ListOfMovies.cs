@@ -99,7 +99,7 @@
 
             string title;
             string category;
-            bool isGoodTitle = true;
+            bool isGoodTitle = false;
             do
             {
                 Console.Clear();
@@ -110,12 +110,9 @@
                     Console.WriteLine("Empty String or invalid input.");
                     Console.WriteLine("Press any key to continue.");
                     Console.ReadKey();
-                    isGoodTitle = false;
+                    continue;
                 }
-                else
-                {
                     isGoodTitle = true;
-                }
             } while(!isGoodTitle);
 
             bool isGoodCategory = false;
