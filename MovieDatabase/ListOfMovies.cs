@@ -20,8 +20,7 @@
             Console.WriteLine($"List of {cat} movies.");
             Console.WriteLine();
             Console.WriteLine(lineBreak);
-            movieList.OrderBy(x => x.Title)
-                .Where(s => s.Category == cat)
+            movieList.Where(s => s.Category == cat)
                 .ToList()
                 .ForEach(i => Console.WriteLine(i.Title));
             Console.WriteLine(lineBreak);
