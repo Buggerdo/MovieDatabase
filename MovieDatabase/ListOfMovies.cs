@@ -99,6 +99,7 @@
         /// </summary>
         public static void AddMovie()
         {
+
             string title;
             string category;
             bool isGoodTitle = false;
@@ -125,6 +126,8 @@
             } while(!isGoodTitle);
 
             bool isGoodCategory = false;
+            string[] genres = { "Action", "Horror" ,"Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
+
             do
             {
                 Console.Clear();
@@ -132,18 +135,37 @@
                 category = Console.ReadLine().Trim();
                 if(category.Length == 0 || category.Contains(','))
                 {
-                    Console.WriteLine("Empty String or invalid input");
+                    Console.WriteLine("Empty String or invalid input.");
                     Console.ReadKey();
-                }
-                else if(category.Length == 1)
-                {
-                    category = char.ToUpper(category[0]).ToString();
-                    isGoodCategory = true;
                 }
                 else
                 {
-                    category = char.ToUpper(category[0]) + category[1..];
-                    isGoodCategory = true;
+                    if(genres.Where(c => c.ToLower().Trim().StartsWith(category)).Any())
+                    {
+                        string[] genresFound = genres.Where(c => c.ToLower().Trim().StartsWith(category)).ToArray();
+                        if(genresFound.Length == 1)
+                        {
+                            foreach(var cat in genres)
+                            {
+                                if(genresFound[0] == cat)
+                                {
+                                    Console.WriteLine($"You chose {cat}");
+                                    category = cat;
+                                    isGoodCategory = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("More then one category mached your input.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry I can't find that category.");
+                        Console.WriteLine("Press any key to try again.");
+                        Console.ReadKey();
+                    }
                 }
             } while(!isGoodCategory);
 
@@ -166,10 +188,12 @@
 
                 Console.Clear();
                 PrintFullMovieList();
+                Console.WriteLine();
                 Console.Write("Please enter the index of the movie you want to remove: ");
                 userInput = Console.ReadLine().Trim();
                 if(int.TryParse(userInput, out int index) && --index < movieList.Count)
                 {
+                    Console.WriteLine();
                     Console.Write($"Are you sure you would like to remove to movie {movieList.ElementAt(index).Title} Y/N? ");
                     string confirmation = Console.ReadLine().ToLower().Trim();
                     if(confirmation != string.Empty && "yes".StartsWith(confirmation))
