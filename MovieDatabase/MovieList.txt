@@ -3,8 +3,13 @@ Cellular,Action
 Die Hard,Action
 Paycheck,Action
 Speed,Action
+9,Animation
 Encanto,Animation
+Extinct,Animation
+Lego movie,Animation
+Megamind,Animation
 Ron's gone wrong,Animation
+Toy Story,Animation
 Anchorman,Comedy
 Groundhog Day,Comedy
 Mrs. Doubtfire,Comedy
@@ -19,3 +24,6 @@ Incantation,Horror
 Paranormal Activity,Horror
 The Black Phone,Horror
 The Exorcist,Horror
+Cry Macho,Western
+No man's land,Western
+Old Henry,Western
