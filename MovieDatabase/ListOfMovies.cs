@@ -94,6 +94,9 @@
             }
         }
 
+        /// <summary>
+        /// Adds a movie to the list
+        /// </summary>
         public static void AddMovie()
         {
             string title;
@@ -151,28 +154,39 @@
             MakeCategories();
         }
 
+        /// <summary>
+        /// Removes a movie from the list
+        /// </summary>
         public static void RemoveMovie()
         {
             bool isMoveRemoved = false;
             string userInput;
-
-            Console.Clear();
-            PrintFullMovieList();
-            Console.Write("Please enter the index of the movie you want to remove: ");
-            userInput = Console.ReadLine().Trim();
-            if(int.TryParse(userInput, out int index) && --index < movieList.Count)
+            do
             {
-                Console.Write($"Are you sure you would like to remove to movie {movieList.ElementAt(index).Title} Y/N? ");
-                string confirmation = Console.ReadLine().ToLower().Trim();
-                if(confirmation != string.Empty && "yes".StartsWith(confirmation))
+
+                Console.Clear();
+                PrintFullMovieList();
+                Console.Write("Please enter the index of the movie you want to remove: ");
+                userInput = Console.ReadLine().Trim();
+                if(int.TryParse(userInput, out int index) && --index < movieList.Count)
                 {
-                    Console.Clear();
-                    movieList.RemoveAt(index);
-                    SaveMovieList();
-                    MakeCategories();
-                    PrintFullMovieList();
+                    Console.Write($"Are you sure you would like to remove to movie {movieList.ElementAt(index).Title} Y/N? ");
+                    string confirmation = Console.ReadLine().ToLower().Trim();
+                    if(confirmation != string.Empty && "yes".StartsWith(confirmation))
+                    {
+                        Console.Clear();
+                        movieList.RemoveAt(index);
+                        SaveMovieList();
+                        MakeCategories();
+                        PrintFullMovieList();
+                        isMoveRemoved = true;
+                    }
                 }
-            }
+                else
+                {
+                    Console.WriteLine($"Sorry {userInput} is not a valid input");
+                }
+            } while(!isMoveRemoved);
         }
     }
 }
