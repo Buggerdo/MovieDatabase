@@ -133,7 +133,7 @@
                 {
                     if(genres.Where(c => c.ToLower().Trim().StartsWith(category)).Any())
                     {
-                        string[] genresFound = genres.Where(c => c.ToLower().Trim().StartsWith(category)).ToArray();
+                        string[] genresFound = genres.Where(c => c.ToLower().StartsWith(category)).ToArray();
                         if(genresFound.Length == 1)
                         {
                             foreach(var cat in genres)
