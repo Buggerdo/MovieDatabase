@@ -116,14 +116,14 @@
                 Console.ReadKey();
             } while(true);
 
-            string[] genres = { "Action", "Horror", "Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
+            string[] acceptedGenres = { "Action", "Horror", "Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
 
             do
             {
                 Console.Clear();
                 Console.Write("Please enter the movie category or exit: ");
                 category = Console.ReadLine().Trim();
-                string[] genresFound = genres.Where(c => c.ToLower().StartsWith(category)).ToArray();
+                string[] genresFound = acceptedGenres.Where(c => c.ToLower().StartsWith(category)).ToArray();
                 if(category == string.Empty || category.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");

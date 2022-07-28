@@ -19,7 +19,7 @@
                 {
                     ListOfMovies.RemoveMovie();
                 }
-            } while(Program.Exit());
+            } while(Validator.Exit());
         }
     }
 }

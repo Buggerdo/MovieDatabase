@@ -32,10 +32,14 @@
                 ListOfMovies.PrintMovieCategory(ListOfMovies.categories.ElementAt(index));
                 return;
             }
-
+            else if(choice.Length > 1)
+            {
+                Console.Clear();
+                Console.WriteLine("More then one category matched your search.");
+                return;
+            }
             Console.Clear();
-            if(choice.Length > 1) Console.WriteLine("More then one category matched your search.");
-            else Console.WriteLine("No categorys matched your search input.");
+            Console.WriteLine("No categorys matched your search input.");
         }
     }
 }

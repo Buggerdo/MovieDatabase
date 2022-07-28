@@ -2,7 +2,6 @@
 {
     internal class Movie
     {
-
         private string _title;
         private string _category;
 
