@@ -101,9 +101,13 @@
             do
             {
                 Console.Clear();
-                Console.Write("Please enter the movie title: ");
+                Console.Write("Please enter the movie title or exit: ");
                 title = Console.ReadLine().Trim().ToUpper();
-                if(title != string.Empty && !title.Contains(','))
+                if("exit".Equals(title.ToLower())) 
+                {
+                    return;
+                }
+                else if(title != string.Empty && !title.Contains(','))
                 {
                     break;
                 }
@@ -117,7 +121,7 @@
             do
             {
                 Console.Clear();
-                Console.Write("Please enter the movie category: ");
+                Console.Write("Please enter the movie category or exit: ");
                 category = Console.ReadLine().Trim();
                 if(category == string.Empty || category.Contains(','))
                 {
@@ -157,7 +161,11 @@
                     Console.ReadKey();
                     continue;
                 }
-                    Console.WriteLine("Sorry I can't find that category.");
+                else if("exit".Equals(category.ToLower()))
+                {
+                    return;
+                }
+                Console.WriteLine("Sorry I can't find that category.");
                     Console.WriteLine("Press any key to try again.");
                     Console.ReadKey();
             } while(true);
@@ -174,7 +182,7 @@
                 Console.Clear();
                 PrintFullMovieList();
                 Console.WriteLine();
-                Console.Write("Please enter the index of the movie you want to remove: ");
+                Console.Write("Please enter the index of the movie you want to remove or exit: ");
                 userInput = Console.ReadLine().Trim();
                 if(int.TryParse(userInput, out int index) && --index < movieList.Count)
                 {
@@ -190,6 +198,10 @@
                         PrintFullMovieList();
                         return;
                     }
+                }
+                else if("exit".Equals(userInput.ToLower()))
+                {
+                    return;
                 }
                 Console.WriteLine($"Sorry {userInput} is not a valid input");
                 Console.WriteLine("Press any key to continue.");
