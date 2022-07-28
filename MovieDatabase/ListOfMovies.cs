@@ -112,7 +112,6 @@
                 Console.ReadKey();
             } while(true);
 
-            bool isGoodCategory = false;
             string[] genres = { "Action", "Horror", "Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
 
             do
@@ -138,10 +137,16 @@
                                 Console.WriteLine($"You chose {cat}");
                                 category = cat;
                                 Movie newMovie = new(title, category);
-                                movieList.Add(newMovie);
-                                movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
-                                SaveMovieList();
-                                MakeCategories();
+                                if(!movieList.Where(t => t.Title.Contains(title)).Any())
+                                {
+                                    movieList.Add(newMovie);
+                                    movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
+                                    SaveMovieList();
+                                    MakeCategories();
+                                    return;
+                                }
+                                Console.Clear();
+                                Console.WriteLine("The movie list already contains that movie.");
                                 return;
                             }
                         }
@@ -151,10 +156,11 @@
                     Console.ReadKey();
                     continue;
                 }
+
                     Console.WriteLine("Sorry I can't find that category.");
                     Console.WriteLine("Press any key to try again.");
                     Console.ReadKey();
-            } while(!isGoodCategory);
+            } while(true);
         }
 
         /// <summary>
