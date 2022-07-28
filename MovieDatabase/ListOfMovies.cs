@@ -98,6 +98,20 @@
         {
             string title;
             string category;
+            string[] acceptedGenres =
+            {
+                "Action",
+                "Horror",
+                "Drama",
+                "Thriller",
+                "Animation",
+                "Comedy",
+                "Western",
+                "Romance",
+                "Adventure",
+                "Fantasy",
+            };
+
             do
             {
                 Console.Clear();
@@ -107,16 +121,14 @@
                 {
                     return;
                 }
-                else if(title != string.Empty && !title.Contains(','))
+                else if(title != string.Empty && !title.Contains(',') && !movieList.Where(t => t.Title.Equals(title)).Any())
                 {
                     break;
                 }
-                Console.WriteLine("Empty String or invalid input.");
+                Console.WriteLine("Movie already exists, entry is empty or invalid input.");
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
             } while(true);
-
-            string[] acceptedGenres = { "Action", "Horror", "Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
 
             do
             {
@@ -124,7 +136,12 @@
                 Console.Write("Please enter the movie category or exit: ");
                 category = Console.ReadLine().Trim();
                 string[] genresFound = acceptedGenres.Where(c => c.ToLower().StartsWith(category)).ToArray();
-                if(category == string.Empty || category.Contains(','))
+
+                if("exit".Equals(category.ToLower()))
+                {
+                    return;
+                }
+                else if(category == string.Empty || category.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");
                     Console.Write("Press any key to continue.");
@@ -136,19 +153,10 @@
                     category = genresFound[0];
                     Console.WriteLine($"You chose {category}");
                     Movie newMovie = new(title, category);
-                    if(!movieList.Where(t => t.Title.Equals(title)).Any())
-                    {
-                        movieList.Add(newMovie);
-                        movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
-                        SaveMovieList();
-                        MakeCategories();
-                        return;
-                    }
-                    Console.Clear();
-                    return;
-                }
-                else if("exit".Equals(category.ToLower()))
-                {
+                    movieList.Add(newMovie);
+                    movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
+                    SaveMovieList();
+                    MakeCategories();
                     return;
                 }
                 else if(genresFound.Length > 1)
