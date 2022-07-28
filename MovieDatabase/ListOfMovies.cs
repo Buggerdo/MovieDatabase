@@ -96,24 +96,21 @@
         /// </summary>
         public static void AddMovie()
         {
-
             string title;
             string category;
-            bool isGoodTitle = false;
             do
             {
                 Console.Clear();
                 Console.Write("Please enter the movie title: ");
                 title = Console.ReadLine().Trim().ToUpper();
-                if(title == string.Empty || title.Contains(','))
+                if(title != string.Empty && !title.Contains(','))
                 {
-                    Console.WriteLine("Empty String or invalid input.");
-                    Console.WriteLine("Press any key to continue.");
-                    Console.ReadKey();
-                    continue;
+                    break;
                 }
-                    isGoodTitle = true;
-            } while(!isGoodTitle);
+                Console.WriteLine("Empty String or invalid input.");
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+            } while(true);
 
             bool isGoodCategory = false;
             string[] genres = { "Action", "Horror", "Drama", "Thriller", "Animation", "Comedy", "Western", "Romance", "Adventure", "Fantasy" };
@@ -129,42 +126,35 @@
                     Console.Write("Press any key to continue.");
                     Console.ReadKey();
                 }
-                else
+                else if(genres.Where(c => c.ToLower().Trim().StartsWith(category)).Any())
                 {
-                    if(genres.Where(c => c.ToLower().Trim().StartsWith(category)).Any())
+                    string[] genresFound = genres.Where(c => c.ToLower().StartsWith(category)).ToArray();
+                    if(genresFound.Length == 1)
                     {
-                        string[] genresFound = genres.Where(c => c.ToLower().StartsWith(category)).ToArray();
-                        if(genresFound.Length == 1)
+                        foreach(var cat in genres)
                         {
-                            foreach(var cat in genres)
+                            if(genresFound[0] == cat)
                             {
-                                if(genresFound[0] == cat)
-                                {
-                                    Console.WriteLine($"You chose {cat}");
-                                    category = cat;
-                                    isGoodCategory = true;
-                                }
+                                Console.WriteLine($"You chose {cat}");
+                                category = cat;
+                                Movie newMovie = new(title, category);
+                                movieList.Add(newMovie);
+                                movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
+                                SaveMovieList();
+                                MakeCategories();
+                                return;
                             }
                         }
-                        else
-                        {
-                            Console.WriteLine("More then one category mached your input.");
-                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Sorry I can't find that category.");
-                        Console.WriteLine("Press any key to try again.");
-                        Console.ReadKey();
-                    }
+                    Console.WriteLine("More then one category mached your input.");
+                    Console.Write("Press any key to continue.");
+                    Console.ReadKey();
+                    continue;
                 }
+                    Console.WriteLine("Sorry I can't find that category.");
+                    Console.WriteLine("Press any key to try again.");
+                    Console.ReadKey();
             } while(!isGoodCategory);
-
-            Movie newMovie = new(title, category);
-            movieList.Add(newMovie);
-            movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
-            SaveMovieList();
-            MakeCategories();
         }
 
         /// <summary>
