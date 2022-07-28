@@ -137,7 +137,7 @@
                                 Console.WriteLine($"You chose {cat}");
                                 category = cat;
                                 Movie newMovie = new(title, category);
-                                if(!movieList.Where(t => t.Title.Contains(title)).Any())
+                                if(!movieList.Where(t => t.Title.Equals(title)).Any())
                                 {
                                     movieList.Add(newMovie);
                                     movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
