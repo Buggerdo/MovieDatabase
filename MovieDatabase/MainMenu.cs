@@ -11,6 +11,7 @@
             Console.WriteLine();
             Console.WriteLine("Enter a movie Category you would like to see.");
             Console.WriteLine("Or you can select a Category by index numbers.");
+            Console.WriteLine("Enter administrator PASSWORD to add or remove movies from the list.");
             Console.WriteLine($"There are {ListOfMovies.movieList.Count} movies in this list.");
             Console.WriteLine();
             string input = Console.ReadLine().ToLower().Trim();
