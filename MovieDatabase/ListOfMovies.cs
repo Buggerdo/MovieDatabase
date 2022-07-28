@@ -124,6 +124,7 @@
                     Console.WriteLine("Empty String or invalid input.");
                     Console.Write("Press any key to continue.");
                     Console.ReadKey();
+                    continue;
                 }
                 else if(genres.Where(c => c.ToLower().Trim().StartsWith(category)).Any())
                 {
@@ -156,7 +157,6 @@
                     Console.ReadKey();
                     continue;
                 }
-
                     Console.WriteLine("Sorry I can't find that category.");
                     Console.WriteLine("Press any key to try again.");
                     Console.ReadKey();
