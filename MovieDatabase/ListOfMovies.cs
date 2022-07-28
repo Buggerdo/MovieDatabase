@@ -183,7 +183,7 @@
                 if(int.TryParse(userInput, out int index) && --index < movieList.Count)
                 {
                     Console.WriteLine();
-                    Console.Write($"Are you sure you would like to remove to movie {movieList.ElementAt(index).Title} Y/N? ");
+                    Console.Write($"Are you sure you would like to remove the movie {movieList.ElementAt(index).Title} Y/N? ");
                     string confirmation = Console.ReadLine().ToLower().Trim();
                     if(confirmation != string.Empty && "yes".StartsWith(confirmation))
                     {
