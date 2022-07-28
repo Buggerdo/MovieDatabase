@@ -4,10 +4,8 @@ DIE HARD,Action
 PAYCHECK,Action
 SPEED,Action
 9,Animation
-9,Animation
 ENCANTO,Animation
 EXTINCT,Animation
-LEGO MOVIE,Animation
 LEGO MOVIE,Animation
 MEGAMIND,Animation
 RON'S GONE WRONG,Animation
