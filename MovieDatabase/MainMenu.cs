@@ -14,6 +14,7 @@
             Console.WriteLine("Enter administrator PASSWORD to add or remove movies from the list.");
             Console.WriteLine($"There are {ListOfMovies.movieList.Count} movies in this list.");
             Console.WriteLine();
+
             string input = Console.ReadLine().ToLower().Trim();
             string[] choice = ListOfMovies.categories.Where(c => c.ToLower().Trim().StartsWith(input)).ToArray();
 

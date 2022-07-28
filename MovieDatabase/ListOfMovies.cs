@@ -103,7 +103,7 @@
                 Console.Clear();
                 Console.Write("Please enter the movie title or exit: ");
                 title = Console.ReadLine().Trim().ToUpper();
-                if("exit".Equals(title.ToLower())) 
+                if("exit".Equals(title.ToLower()))
                 {
                     return;
                 }
@@ -123,6 +123,7 @@
                 Console.Clear();
                 Console.Write("Please enter the movie category or exit: ");
                 category = Console.ReadLine().Trim();
+                string[] genresFound = genres.Where(c => c.ToLower().StartsWith(category)).ToArray();
                 if(category == string.Empty || category.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");
@@ -130,44 +131,36 @@
                     Console.ReadKey();
                     continue;
                 }
-                else if(genres.Where(c => c.ToLower().Trim().StartsWith(category)).Any())
+                else if(genresFound.Length == 1)
                 {
-                    string[] genresFound = genres.Where(c => c.ToLower().StartsWith(category)).ToArray();
-                    if(genresFound.Length == 1)
+                    category = genresFound[0];
+                    Console.WriteLine($"You chose {category}");
+                    Movie newMovie = new(title, category);
+                    if(!movieList.Where(t => t.Title.Equals(title)).Any())
                     {
-                        foreach(var cat in genres)
-                        {
-                            if(genresFound[0] == cat)
-                            {
-                                Console.WriteLine($"You chose {cat}");
-                                category = cat;
-                                Movie newMovie = new(title, category);
-                                if(!movieList.Where(t => t.Title.Equals(title)).Any())
-                                {
-                                    movieList.Add(newMovie);
-                                    movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
-                                    SaveMovieList();
-                                    MakeCategories();
-                                    return;
-                                }
-                                Console.Clear();
-                                Console.WriteLine("The movie list already contains that movie.");
-                                return;
-                            }
-                        }
+                        movieList.Add(newMovie);
+                        movieList = movieList.OrderBy(x => x.Category).ThenBy(x => x.Title).ToList();
+                        SaveMovieList();
+                        MakeCategories();
+                        return;
                     }
-                    Console.WriteLine("More then one category mached your input.");
-                    Console.Write("Press any key to continue.");
-                    Console.ReadKey();
-                    continue;
+                    Console.Clear();
+                    return;
                 }
                 else if("exit".Equals(category.ToLower()))
                 {
                     return;
                 }
-                Console.WriteLine("Sorry I can't find that category.");
+                else if(genresFound.Length > 1)
+                {
+                    Console.WriteLine("More then one category mached your input.");
                     Console.WriteLine("Press any key to try again.");
                     Console.ReadKey();
+                    continue;
+                }
+                Console.WriteLine("Sorry I can't find that category.");
+                Console.WriteLine("Press any key to try again.");
+                Console.ReadKey();
             } while(true);
         }
 
