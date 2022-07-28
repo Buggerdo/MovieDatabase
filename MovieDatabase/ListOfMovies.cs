@@ -141,7 +141,7 @@
                 {
                     return;
                 }
-                else if(category != string.Empty || !category.Contains(','))
+                else if(category == string.Empty || category.Contains(','))
                 {
                     Console.WriteLine("Empty String or invalid input.");
                     Console.Write("Press any key to continue.");
