@@ -30,24 +30,21 @@
                         if(choice[0] == cat)
                         {
                             ListOfMovies.PrintMovieCategory(cat);
+                            return;
                         }
                     }
                 }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Sorry, there was more then one entry that matched your search.");
-                }
+                Console.Clear();
+                Console.WriteLine("Sorry, there was more then one entry that matched your search.");
+                return;
             }
             else if(int.TryParse(input, out int index) && --index < ListOfMovies.categories.Count)
             {
                 ListOfMovies.PrintMovieCategory(ListOfMovies.categories.ElementAt(index));
+                return;
             }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Invalid input.");
-            }
+            Console.Clear();
+            Console.WriteLine("No categorys match your search input.");
         }
     }
 }
