@@ -21,6 +21,7 @@
             if(input == "password")
             {
                 Administrator.AdministratorAccess();
+                return;
             }
             else if(choice.Length == 1)
             {

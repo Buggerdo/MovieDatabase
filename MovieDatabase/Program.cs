@@ -12,7 +12,5 @@
                 MainMenu.StartMainMenu();
             } while(Validator.Exit());
         }
-
-
     }
 }

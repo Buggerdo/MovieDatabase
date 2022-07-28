@@ -2,8 +2,8 @@
 {
     internal class Movie
     {
-        private string _title;
-        private string _category;
+        private readonly string _title;
+        private readonly string _category;
 
         public string Title
         {
