@@ -5,7 +5,7 @@
         public static void StartMainMenu()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to the Movie List Application!");
+            Console.WriteLine("Welcome to Troy's Movie List Application!");
             Console.WriteLine();
             ListOfMovies.PrintCategories();
             Console.WriteLine();
@@ -33,7 +33,7 @@
                 ListOfMovies.PrintMovieCategory(ListOfMovies.categories.ElementAt(index));
                 return;
             }
-            else if(choice.Length > 1)
+            else if(choice.Length > 1 && input != String.Empty)
             {
                 Console.Clear();
                 Console.WriteLine("More then one category matched your search.");
