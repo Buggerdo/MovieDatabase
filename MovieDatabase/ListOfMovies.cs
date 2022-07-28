@@ -98,19 +98,6 @@
         {
             string title;
             string category;
-            string[] acceptedGenres =
-            {
-                "Action",
-                "Horror",
-                "Drama",
-                "Thriller",
-                "Animation",
-                "Comedy",
-                "Western",
-                "Romance",
-                "Adventure",
-                "Fantasy",
-            };
 
             do
             {
@@ -135,7 +122,7 @@
                 Console.Clear();
                 Console.Write("Please enter the movie category or exit: ");
                 category = Console.ReadLine().Trim();
-                string[] genresFound = acceptedGenres.Where(c => c.ToLower().StartsWith(category)).ToArray();
+                string[] genresFound = categories.Where(c => c.ToLower().StartsWith(category)).ToArray();
 
                 if("exit".Equals(category.ToLower()))
                 {
@@ -187,7 +174,7 @@
                 userInput = Console.ReadLine().Trim();
                 if(int.TryParse(userInput, out int index) && --index < movieList.Count)
                 {
-                    Console.WriteLine();
+                    Console.Clear();
                     Console.Write($"Are you sure you would like to remove the movie {movieList.ElementAt(index).Title} Y/N? ");
                     string confirmation = Console.ReadLine().ToLower().Trim();
                     if(confirmation != string.Empty && "yes".StartsWith(confirmation))
@@ -196,9 +183,12 @@
                         movieList.RemoveAt(index);
                         SaveMovieList();
                         MakeCategories();
-                        PrintFullMovieList();
+                        Console.WriteLine("Movie has been removed.");
                         return;
                     }
+                    Console.Clear();
+                    Console.WriteLine("Movie not removed.");
+                    return;
                 }
                 else if("exit".Equals(userInput.ToLower()))
                 {
